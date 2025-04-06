@@ -34,6 +34,9 @@ $repositories($containerBuilder);
 // Build PHP-DI Container instance
 $container = $containerBuilder->build();
 
+//Inicialize Eloquent ORM
+$container->get('db');
+
 // Instantiate the app
 AppFactory::setContainer($container);
 $app = AppFactory::create();

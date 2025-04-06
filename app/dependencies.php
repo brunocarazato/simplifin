@@ -9,7 +9,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use App\Infrastructure\Persistence\Eloquent\EloquentConnection;
+use App\Infrastructure\Persistence\Connection\EloquentConnection;
 use App\Application\Services\Transfer\CurlClient;
 use App\Application\Services\Transfer\AuthorizationService;
 use App\Application\Services\Transfer\NotificationService;
