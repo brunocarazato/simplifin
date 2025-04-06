@@ -15,4 +15,6 @@ class User extends Model
     protected $casts = [
         'balance' => 'float',
     ];
+
+    public $timestamps = false; 
 }

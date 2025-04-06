@@ -14,6 +14,7 @@ class UserFactory
             return new MerchantUser(
                 $record->id,
                 $record->name,
+                $record->cpfCnpj,
                 $record->email,
                 $record->balance
             );
@@ -22,6 +23,7 @@ class UserFactory
         return new CommonUser(
             $record->id,
             $record->name,
+            $record->cpfCnpj,
             $record->email,
             $record->balance
         );

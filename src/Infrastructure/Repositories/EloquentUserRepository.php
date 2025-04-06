@@ -40,7 +40,7 @@ class EloquentUserRepository implements UserRepositoryInterface
 
         $eloquent->name = $user->getName();
         $eloquent->email = $user->getEmail();
-        $eloquent->document = $user->getcpfCpnj();
+        $eloquent->cpfCnpj = $user->getcpfCpnj();
         $eloquent->balance = $user->getBalance();
         $eloquent->save();
     }
