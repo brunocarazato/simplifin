@@ -14,6 +14,8 @@ use App\Application\Services\Transfer\CurlClient;
 use App\Application\Services\Transfer\AuthorizationService;
 use App\Application\Services\Transfer\NotificationService;
 use App\Application\Services\Transfer\TransferService;
+use App\Domain\User\UserRepositoryInterface;
+use App\Infrastructure\Repositories\EloquentUserRepository;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -41,6 +43,8 @@ return function (ContainerBuilder $containerBuilder) {
         NotificationService::class => DI\autowire(NotificationService::class),
         
         TransferService::class => DI\autowire(TransferService::class),
+
+        UserRepositoryInterface::class => DI\autowire(EloquentUserRepository::class),
     ]);
 };
 

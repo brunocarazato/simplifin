@@ -15,11 +15,11 @@ final class EloquentConnectionTest extends PHPUnit_TestCase
         // Instancia e configura Eloquent
         $capsule = new Capsule();
         $capsule->addConnection([
-            'driver'    => 'mysql',
-            'host'      => 'mysql',
-            'database'  => 'slimdb',
-            'username'  => 'root',
-            'password'  => 'root',
+            'driver'    => getenv('DB_DRIVER'),
+            'host'      => getenv('DB_HOST'),
+            'database'  => getenv('DB_DATABASE'),
+            'username'  => getenv('DB_USERNAME'),
+            'password'  => getenv('DB_PASSWORD'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

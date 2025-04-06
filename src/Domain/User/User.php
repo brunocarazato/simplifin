@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use App\Domain\User\Exception\InsufficientFundsException;
-use JsonSerializable;
 
-abstract class User implements JsonSerializable
+abstract class User
 {
 
     protected ?int $id;
@@ -17,12 +16,14 @@ abstract class User implements JsonSerializable
     protected string $password;
     protected float $balance;
 
-    public function __construct(?int $id, string $name, string $cpfCnpj, string $email)
+    public function __construct(?int $id, string $name, string $cpfCnpj, string $email, float $balance = 0.0)
     {
         $this->id = $id;
         $this->name = $name;
         $this->cpfCnpj = $cpfCnpj;
         $this->email = $email;
+        $this->balance = $balance;
+        
     }
 
     public function getId(): ?int
@@ -63,15 +64,5 @@ abstract class User implements JsonSerializable
 
     abstract public function canTransfer(): bool;
 
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'cpfcnpj' => $this->cpfCnpj,
-            'email' => $this->email,
-            'balance' => $this->balance
-        ];
-    }
+
 }
