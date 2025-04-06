@@ -1,18 +1,43 @@
-version: '3.7'
+services:
+  slim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www
+    command: php -S 0.0.0.0:8080 -t public
+    environment:
+      docker: "true"
+      DB_DRIVER: mysql
+      DB_HOST: mysql
+      DB_DATABASE: slimdb
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/var/www
+      - logs:/var/www/logs
+    depends_on:
+      - mysql
+    networks:
+      - slim-network
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: slimdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - slim-network
+
+networks:
+  slim-network:
+    driver: bridge
 
 volumes:
-    logs:
-        driver: local
-
-services:
-    slim:
-        image: php:8.2-fpm-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
-        ports:
-            - "8080:8080"
-        volumes:
-            - .:/var/www
-            - logs:/var/www/logs
+  logs:
+  mysql-data:

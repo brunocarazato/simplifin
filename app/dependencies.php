@@ -9,6 +9,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use App\Infrastructure\Persistence\Eloquent\EloquentConnection;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -26,5 +27,10 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
+        'db' => function () {
+            return EloquentConnection::bootstrap();
+        }
     ]);
 };
+
+
